@@ -92,3 +92,58 @@ This table lists docker images that have been optimized for DSpace software deve
 For more information, join our [#dspace-docker Slack channel](https://dspace-org.slack.com/messages/C9YD42PV3).
 
 [DSpace Docker Wiki Page](https://wiki.duraspace.org/display/DSPACE/DSpace+and+Docker)
+
+
+Instrucciones:
+```
+cd
+cd DSpace-Docker-Images/docker-compose-files/dspace-compose
+docker-compose -p d6 -f docker-compose.yml -f d6.override.yml up -d
+
+docker ps
+
+http://localhost:8080/xmlui
+Stop DSpace 6
+
+This option will pause your container and free up any ports in use. The container can be restarted.
+
+docker-compose -p d6 -f docker-compose.yml -f d6.override.yml stop
+```
+
+Verify that DSpace has stopped
+
+`docker ps`
+
+Restart DSpace 6
+
+`docker-compose -p d6 -f docker-compose.yml -f d6.override.yml start`
+
+Verify that DSpace has restarted
+
+`docker ps`
+
+Terminate DSpace 6
+
+This option will delete your docker container. When you bring up a new container, it will look for an updated image. Your database and assetstore will be preserved.
+
+`docker-compose -p d6 -f docker-compose.yml -f d6.override.yml down`
+
+Verify that DSpace has stopped
+
+`docker ps`
+
+Delete docker Volumes
+
+This will allow you to build a fresh installation with new data.
+
+`docker volume rm d6_assetstore d6_pgdata d6_solr_authority d6_solr_oai d6_solr_search d6_solr_statistics`
+
+
+
+Source:
+```
+https://dspace-labs.github.io/DSpace-Docker-Images/documentation/run.DSpace6.html
+
+```
+
+
